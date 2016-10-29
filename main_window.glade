@@ -2,9 +2,11 @@
 <!-- Generated with glade 3.20.0 -->
 <interface>
   <requires lib="gtk+" version="3.20"/>
-  <object class="GtkApplicationWindow">
-    <property name="name">MainWindow</property>
+  <object class="GtkApplicationWindow" id="MainWindow">
     <property name="can_focus">False</property>
+    <property name="default_width">640</property>
+    <property name="default_height">480</property>
+    <property name="icon_name">system-search</property>
     <child>
       <object class="GtkBox">
         <property name="visible">True</property>
@@ -25,9 +27,8 @@
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
                     <child>
-                      <object class="GtkImageMenuItem">
+                      <object class="GtkImageMenuItem" id="QuitOption">
                         <property name="label">gtk-quit</property>
-                        <property name="name">QuitOption</property>
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
                         <property name="use_underline">True</property>
@@ -49,9 +50,8 @@
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
                     <child>
-                      <object class="GtkImageMenuItem">
+                      <object class="GtkImageMenuItem" id="PreferencesOption">
                         <property name="label">gtk-preferences</property>
-                        <property name="name">PreferencesOption</property>
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
                         <property name="use_underline">True</property>
@@ -73,9 +73,8 @@
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
                     <child>
-                      <object class="GtkImageMenuItem">
+                      <object class="GtkImageMenuItem" id="AboutOption">
                         <property name="label">gtk-about</property>
-                        <property name="name">AboutOption</property>
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
                         <property name="use_underline">True</property>
@@ -101,8 +100,7 @@
             <property name="margin_right">10</property>
             <property name="orientation">vertical</property>
             <child>
-              <object class="GtkSearchEntry">
-                <property name="name">MainSearchBar</property>
+              <object class="GtkSearchEntry" id="MainSearchBar">
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="primary_icon_name">edit-find-symbolic</property>
@@ -123,8 +121,7 @@
           </packing>
         </child>
         <child>
-          <object class="GtkListBox">
-            <property name="name">ResultList</property>
+          <object class="GtkListBox" id="ResultList">
             <property name="visible">True</property>
             <property name="can_focus">False</property>
           </object>
