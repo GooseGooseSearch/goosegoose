@@ -1,0 +1,3 @@
+[submodule "TerraGTK"]
+	path = TerraGTK
+	url = https://github.com/JohnMHarrisJr/TerraGTK
