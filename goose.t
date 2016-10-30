@@ -21,8 +21,12 @@ local uenc = require("urlencode");
 
 local GTK = require("TerraGTK/gtk");
 GTK.loadlib();
-
 GTK.init();
+
+local DEFAULT_BROWSER = "firefox";
+if ffi.os == "OSX" then
+	DEFAULT_BROWSER = "open -a Firefox";
+end
 
 --Boilerplate
 function exists(name)
@@ -46,14 +50,15 @@ function isDir(name)
     return (exists(name) and not isFile(name));
 end
 
-local useTorOpt = false;
-local torStartOpt = "xdg-open";
-local searxServerOpt = "searx.ch";
-
 --CONFIG
 function getEnvDir()
 	return os.getenv("XDG_CONFIG_HOME") or os.getenv("HOME") .. "/.config"
 end
+
+local useTorOpt = false;
+local torStartOpt = "firefox";
+local searxServerOpt = "searx.ch";
+
 local CONFIG_FILE = getEnvDir() .. "/goosegoose"
 if exists(CONFIG_FILE) and isFile(CONFIG_FILE) then
 	local cfile = io.open(CONFIG_FILE);
@@ -181,11 +186,12 @@ local searchBar = GTK.Entry(searchBarWidget._cobj);
 searchBar:connect("activate", function()
 	local txt = searchBar:get_text();
 	local txtStr = ffi.string(txt);
+	win:hide();
+	winSettings:hide();
 	if useTorOpt then
-		print(torStartOpt .. " 'https://" .. searxServerOpt .. "/?q=" .. uenc.string(txtStr) .. "'");
-		os.execute(torStartOpt .. " 'https://" .. searxServerOpt .. "/?q=" .. uenc.string(txtStr) .. "'");
+		os.execute(torStartOpt .. " --detach 'https://" .. searxServerOpt .. "/?q=" .. uenc.string(txtStr) .. "'");
 	else
-		os.execute("firefox https://" .. searxServerOpt .. "/?q=" .. uenc.string(txtStr));
+		os.execute(DEFAULT_BROWSER .. " --detach 'https://" .. searxServerOpt .. "/?q=" .. uenc.string(txtStr) .. "'");
 	end
 	GTK.main_quit();
 end);
