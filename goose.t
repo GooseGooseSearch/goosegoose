@@ -188,10 +188,14 @@ searchBar:connect("activate", function()
 	local txtStr = ffi.string(txt);
 	win:hide();
 	winSettings:hide();
+	local extraInfo = "";
+	if ffi.os ~= "OSX" then
+		extraInfo = "--detach ";
+	end
 	if useTorOpt then
-		os.execute(torStartOpt .. " --detach 'https://" .. searxServerOpt .. "/?q=" .. uenc.string(txtStr) .. "'");
+		os.execute(torStartOpt .. " " .. extraInfo .. " 'https://" .. searxServerOpt .. "/?q=" .. uenc.string(txtStr) .. "'");
 	else
-		os.execute(DEFAULT_BROWSER .. " --detach 'https://" .. searxServerOpt .. "/?q=" .. uenc.string(txtStr) .. "'");
+		os.execute(DEFAULT_BROWSER .. " " .. extraInfo .. " 'https://" .. searxServerOpt .. "/?q=" .. uenc.string(txtStr) .. "'");
 	end
 	GTK.main_quit();
 end);
