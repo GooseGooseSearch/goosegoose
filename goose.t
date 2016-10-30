@@ -194,8 +194,10 @@ searchBar:connect("activate", function()
 	end
 	if useTorOpt then
 		os.execute(torStartOpt .. " " .. extraInfo .. " 'https://" .. searxServerOpt .. "/?q=" .. uenc.string(txtStr) .. "'");
+		--print(torStartOpt .. " " .. extraInfo .. " 'https://" .. searxServerOpt .. "/?q=" .. uenc.string(txtStr) .. "'");
 	else
-		os.execute(DEFAULT_BROWSER .. " " .. extraInfo .. " 'https://" .. searxServerOpt .. "/?q=" .. uenc.string(txtStr) .. "'");
+		os.execute(DEFAULT_BROWSER .. " 'https://" .. searxServerOpt .. "/?q=" .. uenc.string(txtStr) .. "'");
+		--print(DEFAULT_BROWSER .. " 'https://" .. searxServerOpt .. "/?q=" .. uenc.string(txtStr) .. "'");
 	end
 	GTK.main_quit();
 end);
