@@ -4,11 +4,14 @@
   <requires lib="gtk+" version="3.20"/>
   <object class="GtkApplicationWindow" id="MainWindow">
     <property name="can_focus">False</property>
+    <property name="has_focus">True</property>
+    <property name="is_focus">True</property>
     <property name="resizable">False</property>
     <property name="window_position">center</property>
     <property name="default_width">640</property>
     <property name="default_height">75</property>
     <property name="icon_name">system-search</property>
+    <property name="type_hint">dialog</property>
     <property name="gravity">center</property>
     <child>
       <object class="GtkBox">
